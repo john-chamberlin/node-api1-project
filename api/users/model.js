@@ -22,6 +22,7 @@ const find = () => {
 const findById = id => {
   // SELECT * FROM users WHERE id = 1;
   const user = users.find(d => d.id === id)
+
   return Promise.resolve(user)
 }
 
@@ -37,7 +38,7 @@ const update = (id, changes) => {
   const user = users.find(user => user.id === id)
   if (!user) return Promise.resolve(null)
 
-  const updatedUser = { ...changes, id }
+  const updatedUser = { id, ...changes }
   users = users.map(d => (d.id === id) ? updatedUser : d)
   return Promise.resolve(updatedUser)
 }
